@@ -7,20 +7,27 @@ $font: 'Roboto', sans-serif;
 $primary-color : #333;
 
 nav {
-    background-color: $primary-color;
+    height: 10%;
+    width: 100%;
+    background-image: var(--bs-gradient);
     font-family: $font;
-    ul {
-        margin: 0;
-        padding: 1rem;
+    .container-fluid {
         display: flex;
         justify-content: space-between;
-        li {
-            display: inline;
-            list-style: none;
-            a {
-                text-decoration: none;
-                color: white;
-            }
+    }
+}
+
+.container {
+    height: 90%;
+    display: flex;
+    margin-top: 10vh;
+    justify-content: center;
+    .login-area {
+        width: 80%;
+    }
+    form {
+        button {
+            width: 100%;
         }
     }
 }

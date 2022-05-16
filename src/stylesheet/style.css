@@ -5,22 +5,27 @@
 }
 
 nav {
-  background-color: #333;
+  height: 10%;
+  width: 100%;
+  background-image: var(--bs-gradient);
   font-family: "Roboto", sans-serif;
 }
-nav ul {
-  margin: 0;
-  padding: 1rem;
+nav .container-fluid {
   display: flex;
   justify-content: space-between;
 }
-nav ul li {
-  display: inline;
-  list-style: none;
+
+.container {
+  height: 90%;
+  display: flex;
+  margin-top: 10vh;
+  justify-content: center;
 }
-nav ul li a {
-  text-decoration: none;
-  color: white;
+.container .login-area {
+  width: 80%;
+}
+.container form button {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
