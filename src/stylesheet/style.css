@@ -24,6 +24,12 @@ nav .container-fluid {
 .container .login-area {
   width: 80%;
 }
+.container #tambah-pelanggan {
+  width: 80%;
+}
+.container #data-pelanggan {
+  width: 90%;
+}
 .container form button {
   width: 100%;
 }

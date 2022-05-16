@@ -8,6 +8,9 @@ if (!isset($_SESSION["adminloggedin"])) {
         window.location.href = 'index.php';
     </script>";
 }
+
+$sql = 'SELECT * FROM user';
+$data_user = $conn->query($sql);
 ?>
 
 <!doctype html>
@@ -36,18 +39,10 @@ if (!isset($_SESSION["adminloggedin"])) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Beranda</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Informasi</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a href="#" class="dropdown-item">Berita</a></li>
-                            <li><a href="#" class="dropdown-item">Event</a></li>
-                            <li><a href="#" class="dropdown-item">Promo</a></li>
-                        </ul>
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active">Kontak Kami</a>
+                        <a class="nav-link active" href="tambahuser.php">Tambah User</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="logoutproses.php">Keluar</a>
@@ -58,7 +53,31 @@ if (!isset($_SESSION["adminloggedin"])) {
     </nav>
     <!-- content start here -->
     <div class="container">
-        <h1>Halaman Admin</h1>
+        <div id="data-pelanggan">
+            <h2>Data Pelanggan</h2>
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Handle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
