@@ -9,8 +9,11 @@ if (!isset($_SESSION["adminloggedin"])) {
     </script>";
 }
 
-$sql = 'SELECT * FROM user WHERE id > 1';
+$sql = 'SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid';
 $data_user = $conn->query($sql);
+
+$sql2 = 'SELECT SUM(trx) as total from usertrx';
+$data_summing = $conn->query($sql2);
 ?>
 
 <!doctype html>
@@ -59,34 +62,43 @@ $data_user = $conn->query($sql);
         <div id="data-pelanggan">
             <a href="tambahuser.php" class="btn btn-primary" style="width: 100%;">Tambah Pelanggan Baru</a>
             <hr>
-            <h2>Data Pelanggan</h2>
+            <h2>Data Transaksi</h2>
             <div class="table-responsive">
                 <table class="table mt-2">
+                    <form>
+                        <div class="row">
+                            <div class="col-8">
+                                <input class="form-control" style="width: 100%;" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </div>
+                        </div>
+                    </form>
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Username</th>
-                            <th scope="col">NoHP</th>
-                            <th scope="col">Alamat</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Belanja</th>
                             <th scope="col">Total</th>
-                            <th scope="col">Password</th>
+                            <th scope="col">Tanggal/Jam</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $no = 1;
-
-                        while ($data = mysqli_fetch_assoc($data_user)) { ?>
+                        while ($data = mysqli_fetch_assoc($data_user)) {
+                        ?>
                             <tr>
                                 <th scope="row"><?= $no++; ?></th>
-                                <td><?= $data['username']; ?></td>
-                                <td><?= $data['nohp']; ?></td>
-                                <td><?= $data['alamat']; ?></td>
-                                <td><?= $data['total']; ?></td>
-                                <td><?= $data['password']; ?></td>
+                                <td><?= $data['username'] ?></td>
+                                <td><?= $data['trx'] ?></td>
+                                <td><?= $data['total'] ?></td>
+                                <td><?= $data['trxdate'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
+                    <h3>Total : <?= $data_summing ?></h3>
                 </table>
             </div>
         </div>

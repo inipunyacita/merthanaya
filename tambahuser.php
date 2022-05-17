@@ -43,6 +43,9 @@ if (!isset($_SESSION["adminloggedin"])) {
                         <a class="nav-link active" href="#">Tambah User</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link active" href="tambahtrx.php">Tambah Transaksi</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link active" href="logoutproses.php">Keluar</a>
                     </li>
                 </ul>
@@ -70,16 +73,12 @@ if (!isset($_SESSION["adminloggedin"])) {
                     <div id="emailHelp" class="form-text">Masukan alamat pelanggan</div>
                 </div>
                 <div class="mb-3">
-                    <label for="total" class="form-label">Total Belanja :</label>
-                    <input type="number" class="form-control" id="total" name="total" aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">Masukan jumlah belanja dalam (Rp)</div>
-                </div>
-                <div class="mb-3">
                     <label for="pass" class="form-label">Password</label>
                     <input type="password" class="form-control" id="pass" name="pass">
                     <div id="emailHelp" class="form-text">Masukan password untuk akun pelanggan</div>
                 </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary mb-2">Simpan</button>
+                <a href="adminpage.php" class="btn btn-warning" style="width: 100%;">Kembali</a>
             </form>
         </div>
     </div>

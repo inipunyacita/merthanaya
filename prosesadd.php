@@ -12,10 +12,9 @@ if (!isset($_SESSION['adminloggedin'])) {
 $nama = $_POST['nama'];
 $nohp = $_POST['nohp'];
 $alamat = $_POST['alamat'];
-$total = $_POST['total'];
 $pass = $_POST['pass'];
 
-$sql = "INSERT INTO user(`username`, `password`, `total`, `nohp`, `alamat`) VALUES ('$nama', '$pass', '$total', '$nohp', '$alamat')";
+$sql = "INSERT INTO user(`username`, `password`, `nohp`, `alamat`) VALUES ('$nama', '$pass', '$nohp', '$alamat')";
 $query = $conn->query($sql);
 
 if ($query) {
