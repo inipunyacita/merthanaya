@@ -65,10 +65,10 @@ $data_user = $conn->query($sql);
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">No ID</th>
                             <th scope="col">Username</th>
                             <th scope="col">NoHP</th>
                             <th scope="col">Alamat</th>
-                            <th scope="col">Total</th>
                             <th scope="col">Password</th>
                         </tr>
                     </thead>
@@ -79,10 +79,10 @@ $data_user = $conn->query($sql);
                         while ($data = mysqli_fetch_assoc($data_user)) { ?>
                             <tr>
                                 <th scope="row"><?= $no++; ?></th>
+                                <td><?= $data['id']; ?></td>
                                 <td><?= $data['username']; ?></td>
                                 <td><?= $data['nohp']; ?></td>
                                 <td><?= $data['alamat']; ?></td>
-                                <td><?= $data['total']; ?></td>
                                 <td><?= $data['password']; ?></td>
                             </tr>
                         <?php } ?>

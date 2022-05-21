@@ -9,12 +9,13 @@ if (!isset($_SESSION['adminloggedin'])) {
     </script>";
 }
 
+$date = str_shuffle(date("mdyHis"));
 $nama = $_POST['nama'];
 $nohp = $_POST['nohp'];
 $alamat = $_POST['alamat'];
 $pass = $_POST['pass'];
 
-$sql = "INSERT INTO user(`username`, `password`, `nohp`, `alamat`) VALUES ('$nama', '$pass', '$nohp', '$alamat')";
+$sql = "INSERT INTO user(`id`,`username`, `password`, `nohp`, `alamat`) VALUES ('$date','$nama', '$pass', '$nohp', '$alamat')";
 $query = $conn->query($sql);
 
 if ($query) {

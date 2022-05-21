@@ -59,22 +59,22 @@ if (!isset($_SESSION["adminloggedin"])) {
             <form method="post" action="prosesadd.php">
                 <div class="mb-3">
                     <label for="username" class="form-label">Nama :</label>
-                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp" autocomplete="off">
                     <div id="emailHelp" class="form-text">Masukan nama pelanggan</div>
                 </div>
                 <div class="mb-3">
                     <label for="nohp" class="form-label">No HP :</label>
-                    <input type="text" class="form-control" id="nohp" name="nohp" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="nohp" name="nohp" aria-describedby="emailHelp" autocomplete="off">
                     <div id="emailHelp" class="form-text">Masukan no hp pelanggan</div>
                 </div>
                 <div class="mb-3">
                     <label for="alamat" class="form-label">Alamat :</label>
-                    <input type="text" class="form-control" id="alamat" name="alamat" aria-describedby="emailHelp">
+                    <input type="text" class="form-control" id="alamat" name="alamat" aria-describedby="emailHelp" autocomplete="off">
                     <div id="emailHelp" class="form-text">Masukan alamat pelanggan</div>
                 </div>
                 <div class="mb-3">
                     <label for="pass" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="pass" name="pass">
+                    <input type="password" class="form-control" id="pass" name="pass" autocomplete="off">
                     <div id="emailHelp" class="form-text">Masukan password untuk akun pelanggan</div>
                 </div>
                 <button type="submit" class="btn btn-primary mb-2">Simpan</button>

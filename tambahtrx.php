@@ -9,11 +9,10 @@ if (!isset($_SESSION["adminloggedin"])) {
     </script>";
 }
 
-$sql = 'SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid';
-$data_user = $conn->query($sql);
-
 $sql2 = 'SELECT SUM(trx) as total from usertrx';
 $data_summing = $conn->query($sql2);
+$row = mysqli_fetch_assoc($data_summing);
+
 ?>
 
 <!doctype html>
@@ -60,15 +59,15 @@ $data_summing = $conn->query($sql2);
     <!-- content start here -->
     <div class="container">
         <div id="data-pelanggan">
-            <a href="tambahuser.php" class="btn btn-primary" style="width: 100%;">Tambah Pelanggan Baru</a>
+            <a href="tambahtransaksi.php" class="btn btn-primary" style="width: 100%;">Tambah Transaksi Baru</a>
             <hr>
             <h2>Data Transaksi</h2>
             <div class="table-responsive">
                 <table class="table mt-2">
-                    <form>
+                    <form method="get" action="tambahtrx.php">
                         <div class="row">
                             <div class="col-8">
-                                <input class="form-control" style="width: 100%;" type="search" placeholder="Search" aria-label="Search">
+                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Search" aria-label="Search">
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -78,29 +77,37 @@ $data_summing = $conn->query($sql2);
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">No</th>
+                            <th scope="col">No ID</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Belanja</th>
-                            <th scope="col">Total</th>
                             <th scope="col">Tanggal/Jam</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
+                        if (isset($_GET['cari']) && $_GET['cari'] != null) {
+                            $cari = $_GET['cari'];
+                            $sql_cari = "SELECT * FROM usertrx INNER JOIN user on user.id = usertrx.userid WHERE userid LIKE '%" . $cari . "%'";
+                            $data_user = $conn->query($sql_cari);
+                        } else {
+                            $sql = 'SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid';
+                            $data_user = $conn->query($sql);
+                        }
                         $no = 1;
-                        while ($data = mysqli_fetch_assoc($data_user)) {
+                        while ($data = mysqli_fetch_array($data_user)) {
                         ?>
                             <tr>
                                 <th scope="row"><?= $no++; ?></th>
+                                <td><?= $data['userid'] ?></td>
                                 <td><?= $data['username'] ?></td>
                                 <td><?= $data['trx'] ?></td>
-                                <td><?= $data['total'] ?></td>
                                 <td><?= $data['trxdate'] ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
-                    <h3>Total : <?= $data_summing ?></h3>
                 </table>
-            </div>
+            </div><br>
+            <h4>Total : Rp <?= $row['total'] ?></h4>
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
