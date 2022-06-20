@@ -43,7 +43,7 @@ if (!isset($_SESSION["adminloggedin"])) {
                         <a class="nav-link active" href="#">Tambah User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="tambahtrx.php">Tambah Transaksi</a>
+                        <a class="nav-link active" href="tambahtrx.php">List Transaksi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="logoutproses.php">Keluar</a>

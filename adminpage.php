@@ -45,7 +45,7 @@ $data_user = $conn->query($sql);
                         <a class="nav-link active" href="tambahuser.php">Tambah User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="tambahtrx.php">Tambah Transaksi</a>
+                        <a class="nav-link active" href="tambahtrx.php">List Transaksi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="logoutproses.php">Keluar</a>
@@ -104,6 +104,7 @@ $data_user = $conn->query($sql);
                                 <td><?= $data['alamat']; ?></td>
                                 <td><?= $data['pass']; ?></td>
                                 <td>
+                                    <a href="tambahtransaksi.php?id=<?php echo $data['id'] ?>" class="btn btn-success mb-1 w-100">Tambah Transaksi</a>
                                     <a href="#"><button type="button" class="btn btn-primary w-100 mb-1" data-bs-toggle="modal" data-bs-target="#detail_modal">
                                             Detail
                                         </button>
@@ -126,7 +127,7 @@ $data_user = $conn->query($sql);
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="#" class="btn btn-warning mb-1 w-100">Edit</a>
+                                    <a href="#" class="btn btn-warning mb-1 text-white w-100">Edit</a>
                                     <a href="#" class="btn btn-danger mb-1 w-100">Hapus</a>
                                 </td>
                             </tr>

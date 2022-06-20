@@ -48,7 +48,7 @@ $total_price = 0;
                         <a class="nav-link active" href="tambahuser.php">Tambah User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Tambah Transaksi</a>
+                        <a class="nav-link active" href="#">List Transaksi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="logoutproses.php">Keluar</a>
@@ -60,7 +60,6 @@ $total_price = 0;
     <!-- content start here -->
     <div class="container">
         <div id="data-pelanggan">
-            <a href="tambahtransaksi.php" class="btn btn-primary" style="width: 100%;">Tambah Transaksi Baru</a>
             <hr>
             <h2>Data Transaksi</h2>
             <div class="table-responsive">
@@ -86,14 +85,26 @@ $total_price = 0;
                     </thead>
                     <tbody>
                         <?php
+                        $batas = 10;
+                        $halaman = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+                        $halaman_awal = ($halaman > 1) ? ($halaman * $batas) - $batas : 0;
+
+                        $previous = $halaman - 1;
+                        $next = $halaman + 1;
+
+                        $data = $conn->query("SELECT * FROM usertrx");
+                        $jumlah_data = mysqli_num_rows($data);
+                        $total_halaman = ceil($jumlah_data / $batas);
+
                         if (isset($_GET['cari']) && $_GET['cari'] != null) {
                             $cari = $_GET['cari'];
-                            $sql_cari = "SELECT * FROM usertrx INNER JOIN user on user.id = usertrx.userid WHERE userid LIKE '%" . $cari . "%'";
+                            $sql_cari = "SELECT * FROM usertrx INNER JOIN user on user.id = usertrx.userid WHERE userid LIKE '%" . $cari . "%' limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql_cari);
                         } else {
-                            $sql = 'SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid';
+                            $sql = "SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql);
                         }
+                        $nomor = $halaman_awal + 1;
                         $no = 1;
 
                         while ($data = mysqli_fetch_array($data_user)) {
@@ -112,6 +123,24 @@ $total_price = 0;
                     </tbody>
                 </table>
             </div><br>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" <?php if ($halaman > 1) {
+                                                    echo "href='?halaman=$previous'";
+                                                } ?>>Previous</a>
+                    </li>
+                    <?php
+                    for ($x = 1; $x <= $total_halaman; $x++) {
+                    ?>
+                        <li class="page-item"><a class="page-link" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
+                    <?php } ?>
+                    <li class="page-item"><a class="page-link" <?php if ($halaman < $total_halaman) {
+                                                                    echo "href='?halaman=$next'";
+                                                                } ?>>Next</a>
+                    </li>
+                </ul>
+            </nav>
             <h4>Total : Rp <?= number_format($total_price, 0, '.' . ',') ?></h4>
         </div>
     </div>
