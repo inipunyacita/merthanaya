@@ -141,8 +141,8 @@ $total_price = 0;
                     </li>
                 </ul>
             </nav>
-            <h4>Total : Rp <?= number_format($total_price, 0, '.' . ',') ?></h4>
         </div>
+        <h4>Total : Rp <?= $total_price ?></h4>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
