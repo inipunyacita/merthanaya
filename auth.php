@@ -14,7 +14,7 @@ $user_sql = "SELECT * FROM user WHERE nohp = '$user_nohp'";
 $user_query = $conn->query($user_sql)->fetch_assoc();
 
 if (isset($user_query)) {
-    if ($user_query['password'] == $user_pass) {
+    if ($user_query['pass'] == $user_pass) {
         if ($user_query['nohp'] == 'admin') {
             $_SESSION["adminloggedin"] = $user_query;
             echo "<script>

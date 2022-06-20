@@ -59,7 +59,7 @@ if (!isset($_SESSION["adminloggedin"])) {
             <form method="post" action="prosesadd.php">
                 <div class="mb-3">
                     <label for="username" class="form-label">Nama :</label>
-                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp" autocomplete="off">
+                    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp" autocomplete="off" required>
                     <div id="emailHelp" class="form-text">Masukan nama pelanggan</div>
                 </div>
                 <div class="mb-3">

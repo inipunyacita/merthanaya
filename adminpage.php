@@ -62,6 +62,16 @@ $data_user = $conn->query($sql);
             <h2>Data Pelanggan</h2>
             <div class="table-responsive">
                 <table class="table mt-2">
+                    <form method="get" action="adminpage.php">
+                        <div class="row">
+                            <div class="col-8">
+                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Masukan No ID Pelanggan" aria-label="Search">
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-outline-success" type="submit">Cari</button>
+                            </div>
+                        </div>
+                    </form>
                     <thead class="table-dark">
                         <tr>
                             <th scope="col">No</th>
@@ -70,10 +80,19 @@ $data_user = $conn->query($sql);
                             <th scope="col">NoHP</th>
                             <th scope="col">Alamat</th>
                             <th scope="col">Password</th>
+                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
+                        if (isset($_GET['cari']) && $_GET['cari'] != null) {
+                            $cari = $_GET['cari'];
+                            $sql = "SELECT * FROM user WHERE username LIKE '%" . $cari . "%'";
+                            $data_user = $conn->query($sql);
+                        } else {
+                            $sql_user = "SELECT * FROM user";
+                            $data_user = $conn->query($sql_user);
+                        }
                         $no = 1;
 
                         while ($data = mysqli_fetch_assoc($data_user)) { ?>
@@ -83,7 +102,33 @@ $data_user = $conn->query($sql);
                                 <td><?= $data['username']; ?></td>
                                 <td><?= $data['nohp']; ?></td>
                                 <td><?= $data['alamat']; ?></td>
-                                <td><?= $data['password']; ?></td>
+                                <td><?= $data['pass']; ?></td>
+                                <td>
+                                    <a href="#"><button type="button" class="btn btn-primary w-100 mb-1" data-bs-toggle="modal" data-bs-target="#detail_modal">
+                                            Detail
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="detail_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-fullscreen-sm-down">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">Detail Informasi</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <?= $data['username']; ?>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-primary">Understood</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="btn btn-warning mb-1 w-100">Edit</a>
+                                    <a href="#" class="btn btn-danger mb-1 w-100">Hapus</a>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

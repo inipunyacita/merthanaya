@@ -9,9 +9,10 @@ if (!isset($_SESSION["adminloggedin"])) {
     </script>";
 }
 
-$sql2 = 'SELECT SUM(trx) as total from usertrx';
-$data_summing = $conn->query($sql2);
-$row = mysqli_fetch_assoc($data_summing);
+$total_price = 0;
+
+
+// $row = mysqli_fetch_assoc($data_summing);
 
 ?>
 
@@ -41,13 +42,13 @@ $row = mysqli_fetch_assoc($data_summing);
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="adminpage.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="tambahuser.php">Tambah User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="tambahtrx.php">Tambah Transaksi</a>
+                        <a class="nav-link active" href="#">Tambah Transaksi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="logoutproses.php">Keluar</a>
@@ -67,10 +68,10 @@ $row = mysqli_fetch_assoc($data_summing);
                     <form method="get" action="tambahtrx.php">
                         <div class="row">
                             <div class="col-8">
-                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Search" aria-label="Search">
+                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Masukan No ID Pelanggan" aria-label="Search">
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
+                                <button class="btn btn-outline-success" type="submit">Cari</button>
                             </div>
                         </div>
                     </form>
@@ -94,6 +95,7 @@ $row = mysqli_fetch_assoc($data_summing);
                             $data_user = $conn->query($sql);
                         }
                         $no = 1;
+
                         while ($data = mysqli_fetch_array($data_user)) {
                         ?>
                             <tr>
@@ -104,10 +106,13 @@ $row = mysqli_fetch_assoc($data_summing);
                                 <td><?= $data['trxdate'] ?></td>
                             </tr>
                         <?php } ?>
+                        <?php foreach ($data_user as $total) {
+                            $total_price += $total['trx'];
+                        } ?>
                     </tbody>
                 </table>
             </div><br>
-            <h4>Total : Rp <?= $row['total'] ?></h4>
+            <h4>Total : Rp <?= number_format($total_price, 0, '.' . ',') ?></h4>
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
