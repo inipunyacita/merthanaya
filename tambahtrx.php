@@ -76,7 +76,6 @@ $total_price = 0;
                     </form>
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">No</th>
                             <th scope="col">No ID</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Belanja</th>
@@ -114,10 +113,11 @@ $total_price = 0;
                                 <td><?= $data['trx'] ?></td>
                                 <td><?= $data['trxdate'] ?></td>
                             </tr>
-                        <?php } ?>
+                        <?php
+                            $total_trx = count($data);
+                        } ?>
                         <?php foreach ($data_user as $total) {
                             $total_price += $total['trx'];
-                            $total_trx = count($total);
                         } ?>
                     </tbody>
                 </table>
