@@ -42,7 +42,7 @@ $data_user = $conn->query($sql);
                         <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="tambahuser.php">Tambah User</a>
+                        <a class="nav-link active" href="tambahuser.php">Tambah Pelanggan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="tambahtrx.php">List Transaksi</a>
@@ -111,7 +111,12 @@ $data_user = $conn->query($sql);
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <label for="">ID :</label><?= $data['username']; ?><br>
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+                                                                <div class="cold-md-5"><label for="">ID :</label></div>
+                                                                <div class="col-md-5"><?= $data['username']; ?></div>
+                                                            </div>
+                                                        </div>
                                                         <label for="">Username :</label><?= $data['username']; ?><br>
                                                         <label for="">Pass :<?= $data['pass']; ?><br>
                                                             <label for="">No HP :<?= $data['nohp']; ?><br>
@@ -120,7 +125,6 @@ $data_user = $conn->query($sql);
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-primary">Understood</button>
                                                     </div>
                                                 </div>
                                             </div>

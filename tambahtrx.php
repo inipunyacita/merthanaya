@@ -67,7 +67,7 @@ $total_price = 0;
                     <form method="get" action="tambahtrx.php">
                         <div class="row">
                             <div class="col-8">
-                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Masukan No ID Pelanggan" aria-label="Search">
+                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Masukan No ID/Username Pelanggan" aria-label="Search">
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-outline-success" type="submit">Cari</button>
