@@ -103,6 +103,7 @@ $total_price = 0;
                             $sql = "SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql);
                         }
+                        $total_data = mysqli_num_rows($data_user);
                         $nomor = $halaman_awal + 1;
 
                         while ($data = mysqli_fetch_array($data_user)) {
@@ -116,7 +117,6 @@ $total_price = 0;
                         <?php } ?>
                         <?php foreach ($data_user as $total) {
                             $total_price += $total['trx'];
-                            $total_data = mysqli_num_rows($total);
                         } ?>
                     </tbody>
                 </table>
