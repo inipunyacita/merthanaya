@@ -116,6 +116,7 @@ $total_price = 0;
                         <?php } ?>
                         <?php foreach ($data_user as $total) {
                             $total_price += $total['trx'];
+                            $total_data = mysqli_num_rows($total);
                         } ?>
                     </tbody>
                 </table>
@@ -138,7 +139,7 @@ $total_price = 0;
                     </li>
                 </ul>
             </nav>
-            <h4>Jumlah Transaksi : <?= $jumlah_data ?> Kali</h4>
+            <h4>Jumlah Transaksi : <?= $total_data ?> Kali</h4>
             <h4>Total Transaksi : Rp <?= $total_price ?></h4>
         </div>
     </div>
