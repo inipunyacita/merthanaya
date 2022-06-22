@@ -99,7 +99,7 @@ $data_user = $conn->query($sql);
                                 <td><?= $data['username']; ?></td>
                                 <td>
                                     <a href="tambahtransaksi.php?id=<?php echo $data['id'] ?>" class="btn btn-success mb-1 w-100">Tambah Transaksi</a>
-                                    <a href="#"><button type="button" class="btn btn-primary w-100 mb-1" data-bs-toggle="modal" data-bs-target="#detail_modal">
+                                    <a href="#"><button type="button" class="btn btn-primary w-100 mb-1" data-bs-toggle="modal" data-bs-target="#detail_modal" data-id="'.$data['id'].'">
                                             Detail
                                         </button>
                                         <!-- Modal -->
@@ -135,6 +135,12 @@ $data_user = $conn->query($sql);
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $('.but_apply').click(function() {
+            var id = $(this).attr('data-id');
+            $('#detail-modal').find('.modal-body').html(id);
+        });
+    </script>
 </body>
 
 </html>
