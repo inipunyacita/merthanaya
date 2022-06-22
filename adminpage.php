@@ -124,24 +124,34 @@ $data_user = $conn->query($sql);
                                                     <div class="modal-body">
                                                         <div class="container-fluid">
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-5"><label for="">No ID :</label><?= $data['id']; ?></div>
-                                                                <div class="col-2"><label for="">No ID :</label><?= $data['id']; ?></div>
-                                                                <div class="col-5"><label for="">No ID :</label><?= $data['id']; ?></div>
+                                                                <div class="col-4"><label for="">ID</label></div>
+                                                                <div class="col-1"><label for="">:</label></div>
+                                                                <div class="col-5"><?= $data['id']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-12"><label for="">Username :</label><?= $data['username']; ?></div>
+                                                                <div class="col-4"><label for="">Username</label></div>
+                                                                <div class="col-1"><label for="">:</label></div>
+                                                                <div class="col-5"><?= $data['username']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-12"><label for="">Password :</label><?= $data['pass']; ?></div>
+                                                                <div class="col-4"><label for="">Pass</label></div>
+                                                                <div class="col-1"><label for="">:</label></div>
+                                                                <div class="col-5"><?= $data['pass']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-12"><label for="">No HP :</label><?= $data['nohp']; ?></div>
+                                                                <div class="col-4"><label for="">No HP</label></div>
+                                                                <div class="col-1"><label for="">:</label></div>
+                                                                <div class="col-5"><?= $data['nohp']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-12"><label for="">Alamat :</label><?= $data['alamat']; ?></div>
+                                                                <div class="col-4"><label for="">Alamat</label></div>
+                                                                <div class="col-1"><label for="">:</label></div>
+                                                                <div class="col-5"><?= $data['alamat']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-12"><label for="">Tgl Buat : </label><?= $data['created_at']; ?></div>
+                                                                <div class="col-4"><label for="">Tanggal Buat Akun</label></div>
+                                                                <div class="col-1"><label for="">:</label></div>
+                                                                <div class="col-5"><?= $data['created_at']; ?></div>
                                                             </div>
                                                         </div>
                                                     </div>
