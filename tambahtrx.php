@@ -103,7 +103,10 @@ $total_price = 0;
                         } else {
                             $sql = "SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql);
-                            $total_data = mysqli_num_rows($data_user);
+
+                            $sql2 = "SELECT * FROM usertrx";
+                            $jumlahdata = $conn->query($sql2);
+                            $total_data = mysqli_num_rows($jumlahdata);
                         }
                         $nomor = $halaman_awal + 1;
 
