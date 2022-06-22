@@ -99,11 +99,12 @@ $total_price = 0;
                             $cari = $_GET['cari'];
                             $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` like '%$cari%') or (`username` like '%$cari%') limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql_cari);
+                            $total_data = mysqli_num_rows($data_user);
                         } else {
                             $sql = "SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql);
+                            $total_data = mysqli_num_rows($data_user);
                         }
-                        $total_data = mysqli_num_rows($data_user);
                         $nomor = $halaman_awal + 1;
 
                         while ($data = mysqli_fetch_array($data_user)) {
