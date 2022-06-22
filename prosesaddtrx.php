@@ -18,6 +18,6 @@ $query = mysqli_query($conn, $sql);
 if ($query) {
     echo "<script>
             alert('Data transaksi pelanggan berhasil ditambahkan');
-            window.location.href = 'tambahtrx.php';
+            window.location.href = 'adminpage.php';
         </script>";
 }
