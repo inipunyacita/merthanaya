@@ -149,7 +149,7 @@ $data_user = $conn->query($sql);
                                                                 <div class="col-5"><?= $data['alamat']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-4"><label for="">Tanggal Buat Akun</label></div>
+                                                                <div class="col-4"><label for="">Tgl Buat Akun</label></div>
                                                                 <div class="col-1"><label for="">:</label></div>
                                                                 <div class="col-5"><?= $data['created_at']; ?></div>
                                                             </div>
