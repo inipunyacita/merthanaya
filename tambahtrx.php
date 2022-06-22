@@ -105,13 +105,11 @@ $total_price = 0;
                             $data_user = $conn->query($sql);
                         }
                         $nomor = $halaman_awal + 1;
-                        $no = 1;
 
                         while ($data = mysqli_fetch_array($data_user)) {
                         ?>
                             <tr>
-                                <th scope="row"><?= $no++; ?></th>
-                                <td><?= $data['userid'] ?></td>
+                                <th scope="row"><?= $data['userid'] ?></th>
                                 <td><?= $data['username'] ?></td>
                                 <td><?= $data['trx'] ?></td>
                                 <td><?= $data['trxdate'] ?></td>
@@ -119,6 +117,7 @@ $total_price = 0;
                         <?php } ?>
                         <?php foreach ($data_user as $total) {
                             $total_price += $total['trx'];
+                            $total_trx = count($total);
                         } ?>
                     </tbody>
                 </table>
@@ -141,7 +140,8 @@ $total_price = 0;
                     </li>
                 </ul>
             </nav>
-            <h4>Total : Rp <?= $total_price ?></h4>
+            <h4>Jumlah Transaksi : <?= $total_trx ?> Kali</h4>
+            <h4>Total Transaksi : Rp <?= $total_price ?></h4>
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
