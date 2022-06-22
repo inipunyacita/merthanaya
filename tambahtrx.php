@@ -99,7 +99,10 @@ $total_price = 0;
                             $cari = $_GET['cari'];
                             $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` like '%$cari%') or (`username` like '%$cari%') limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql_cari);
-                            foreach ($data_user as $total) {
+
+                            $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` like '%$cari%') or (`username` like '%$cari%') limit $halaman_awal, $batas";
+                            $data_user2 = $conn->query($sql_cari2);
+                            foreach ($data_user2 as $total) {
                                 $total_price += $total['trx'];
                             }
                             $total_data = mysqli_num_rows($data_user);
