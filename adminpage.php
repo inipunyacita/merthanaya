@@ -124,7 +124,9 @@ $data_user = $conn->query($sql);
                                                     <div class="modal-body">
                                                         <div class="container-fluid">
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-12"><label for="">No ID :</label><?= $data['id']; ?></div>
+                                                                <div class="col-5"><label for="">No ID :</label><?= $data['id']; ?></div>
+                                                                <div class="col-2"><label for="">No ID :</label><?= $data['id']; ?></div>
+                                                                <div class="col-5"><label for="">No ID :</label><?= $data['id']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
                                                                 <div class="col-md-12"><label for="">Username :</label><?= $data['username']; ?></div>
