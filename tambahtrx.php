@@ -101,7 +101,6 @@ $total_price = 0;
                             $data_user = $conn->query($sql_cari);
 
                             $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` like '%$cari%') or (`username` like '%$cari%') limit $halaman_awal, $batas";
-                            $data_user2 = $conn->query($sql_cari2);
                             foreach ($data_user2 as $total) {
                                 $total_price += $total['trx'];
                             }
@@ -150,7 +149,7 @@ $total_price = 0;
                 </ul>
             </nav>
             <h4>Jumlah Transaksi : <?= $total_data ?> Kali</h4>
-            <h4>Total Transaksi : Rp <?= $total_price ?></h4>
+            <h4>Total Transaksi : Rp <?= number_format($total_price, 2, ',', '.') ?></h4>
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
