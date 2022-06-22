@@ -99,11 +99,11 @@ $data_user = $conn->query($sql);
                                 <td><?= $data['username']; ?></td>
                                 <td>
                                     <a href="tambahtransaksi.php?id=<?php echo $data['id'] ?>" class="btn btn-success mb-1 w-100">Tambah Transaksi</a>
-                                    <a href="#"><button type="button" class="btn btn-primary w-100 mb-1 btn_detail" data-bs-toggle="modal" data-bs-target="#detail_modal" data-id="'.$data['id'].'">
+                                    <a href="#"><button type="button" class="btn btn-primary w-100 mb-1 btn_detail" data-bs-toggle="modal" data-bs-target="#detail_modal<?php echo $data['id'] ?>">
                                             Detail
                                         </button>
                                         <!-- Modal -->
-                                        <div class="modal fade" id="detail_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal fade" id="detail_modal<?php echo $data['id'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-fullscreen-sm-down">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -135,12 +135,6 @@ $data_user = $conn->query($sql);
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $('.btn_detail').click(function() {
-            var id = $(this).attr('data-id');
-            $('#detail-modal').find('.modal-body').html(id);
-        });
-    </script>
 </body>
 
 </html>
