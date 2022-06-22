@@ -87,7 +87,7 @@ $data_user = $conn->query($sql);
                         <?php
                         if (isset($_GET['cari']) && $_GET['cari'] != null) {
                             $cari = $_GET['cari'];
-                            $sql = "SELECT * FROM user WHERE username LIKE '%" . $cari . "%'";
+                            $sql = "SELECT * FROM user WHERE username LIKE $cari or id LIKE $cari";
                             $data_user = $conn->query($sql);
                         } else {
                             $sql_user = "SELECT * FROM user";
