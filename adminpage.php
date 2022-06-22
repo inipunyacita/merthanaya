@@ -113,7 +113,7 @@ $data_user = $conn->query($sql);
                                                     <div class="modal-body">
                                                         <div class="container-fluid">
                                                             <div class="row">
-                                                                <div class="col-md-5 text-center"><label for="">ID :</label></div>
+                                                                <div class="col-md-5 d-flex justify-content-center"><label for="">ID :</label></div>
                                                                 <div class="col-md-5"><?= $data['username']; ?></div>
                                                             </div>
                                                         </div>
