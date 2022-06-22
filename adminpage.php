@@ -65,7 +65,7 @@ $data_user = $conn->query($sql);
                     <form method="get" action="adminpage.php">
                         <div class="row">
                             <div class="col-8">
-                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Masukan No ID Pelanggan" aria-label="Search">
+                                <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Masukan No ID/Username Pelanggan" aria-label="Search">
                             </div>
                             <div class="col-4">
                                 <button class="btn btn-outline-success" type="submit">Cari</button>
@@ -77,9 +77,6 @@ $data_user = $conn->query($sql);
                             <th scope="col">No</th>
                             <th scope="col">No ID</th>
                             <th scope="col">Username</th>
-                            <th scope="col">NoHP</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">Password</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -100,9 +97,6 @@ $data_user = $conn->query($sql);
                                 <th scope="row"><?= $no++; ?></th>
                                 <td><?= $data['id']; ?></td>
                                 <td><?= $data['username']; ?></td>
-                                <td><?= $data['nohp']; ?></td>
-                                <td><?= $data['alamat']; ?></td>
-                                <td><?= $data['pass']; ?></td>
                                 <td>
                                     <a href="tambahtransaksi.php?id=<?php echo $data['id'] ?>" class="btn btn-success mb-1 w-100">Tambah Transaksi</a>
                                     <a href="#"><button type="button" class="btn btn-primary w-100 mb-1" data-bs-toggle="modal" data-bs-target="#detail_modal">
@@ -117,7 +111,10 @@ $data_user = $conn->query($sql);
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <?= $data['username']; ?>
+                                                        <label for="">Username :</label><?= $data['username']; ?>
+                                                        <label for="">Password :</label><?= $data['pass']; ?>
+                                                        <label for="">No HP :</label><?= $data['nohp']; ?>
+                                                        <label for="">Alamat :</label><?= $data['alamat']; ?>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
