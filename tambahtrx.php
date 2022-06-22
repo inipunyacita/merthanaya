@@ -113,9 +113,7 @@ $total_price = 0;
                                 <td><?= $data['trx'] ?></td>
                                 <td><?= $data['trxdate'] ?></td>
                             </tr>
-                        <?php
-                            $total_trx = count($data);
-                        } ?>
+                        <?php } ?>
                         <?php foreach ($data_user as $total) {
                             $total_price += $total['trx'];
                         } ?>
@@ -140,7 +138,7 @@ $total_price = 0;
                     </li>
                 </ul>
             </nav>
-            <h4>Jumlah Transaksi : <?= $total_trx ?> Kali</h4>
+            <h4>Jumlah Transaksi : <?= $jumlah_data ?> Kali</h4>
             <h4>Total Transaksi : Rp <?= $total_price ?></h4>
         </div>
     </div>
