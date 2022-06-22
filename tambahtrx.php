@@ -45,7 +45,7 @@ $total_price = 0;
                         <a class="nav-link active" aria-current="page" href="adminpage.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="tambahuser.php">Tambah User</a>
+                        <a class="nav-link active" href="tambahuser.php">Tambah Pelanggan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#">List Transaksi</a>
@@ -98,7 +98,7 @@ $total_price = 0;
 
                         if (isset($_GET['cari']) && $_GET['cari'] != null) {
                             $cari = $_GET['cari'];
-                            $sql_cari = "SELECT * FROM usertrx INNER JOIN user on user.id = usertrx.userid WHERE userid LIKE '%" . $cari . "%' limit $halaman_awal, $batas";
+                            $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` like '%$cari%') or (`username` like '%$cari%') limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql_cari);
                         } else {
                             $sql = "SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid limit $halaman_awal, $batas";

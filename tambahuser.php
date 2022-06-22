@@ -40,7 +40,7 @@ if (!isset($_SESSION["adminloggedin"])) {
                         <a class="nav-link active" aria-current="page" href="adminpage.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Tambah User</a>
+                        <a class="nav-link active" href="#">Tambah Pelanggan</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="tambahtrx.php">List Transaksi</a>

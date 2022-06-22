@@ -111,10 +111,12 @@ $data_user = $conn->query($sql);
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <?= $data['username']; ?>
-                                                        <?= $data['pass']; ?>
-                                                        <?= $data['nohp']; ?>
-                                                        <?= $data['alamat']; ?>
+                                                        <label for="">ID :</label><?= $data['username']; ?><br>
+                                                        <label for="">Username :</label><?= $data['username']; ?><br>
+                                                        <label for="">Pass :<?= $data['pass']; ?><br>
+                                                            <label for="">No HP :<?= $data['nohp']; ?><br>
+                                                                <label for="">Alamat :<?= $data['alamat']; ?><br>
+                                                                    <label for="">Tanggal Buat Akun :</label><?= $data['created_at']; ?>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
