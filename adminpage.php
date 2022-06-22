@@ -124,59 +124,59 @@ $data_user = $conn->query($sql);
                                                     <div class="modal-body">
                                                         <div class="container-fluid">
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-5"><label for="">No ID :</label><?= $data['id']; ?></div>
+                                                                <div class="col-md-12"><label for="">No ID :</label><?= $data['id']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-5"><label for="">Username :</label><?= $data['username']; ?></div>
+                                                                <div class="col-md-12"><label for="">Username :</label><?= $data['username']; ?></div>
                                                             </div>
                                                             <div class="row d-flex justify-content-center">
-                                                                <div class="col-md-5"><label for="">Password :</label><?= $data['pass']; ?></div>
+                                                                <div class="col-md-12"><label for="">Password :</label><?= $data['pass']; ?></div>
                                                             </div>
-                                                            <div class="row d-flex justify-content-center"></div>
-                                                            <div class="col-md-5"><label for="">No HP :</label><?= $data['nohp']; ?></div>
-                                                        </div>
-                                                        <div class="row d-flex justify-content-center">
-                                                            <div class="col-md-5"><label for="">Alamat :</label><?= $data['alamat']; ?></div>
-                                                        </div>
-                                                        <div class="row d-flex justify-content-center">
-                                                            <div class="col-md-5"><label for="">Tgl Buat : </label><?= $data['created_at']; ?></div>
+                                                            <div class="row d-flex justify-content-center">
+                                                                <div class="col-md-12"><label for="">No HP :</label><?= $data['nohp']; ?></div>
+                                                            </div>
+                                                            <div class="row d-flex justify-content-center">
+                                                                <div class="col-md-12"><label for="">Alamat :</label><?= $data['alamat']; ?></div>
+                                                            </div>
+                                                            <div class="row d-flex justify-content-center">
+                                                                <div class="col-md-12"><label for="">Tgl Buat : </label><?= $data['created_at']; ?></div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </a>
+                                    <a href="#" class="btn btn-warning mb-1 text-white w-100">Edit</a>
+                                    <a href="#" class="btn btn-danger mb-1 w-100">Hapus</a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
-            </a>
-            <a href="#" class="btn btn-warning mb-1 text-white w-100">Edit</a>
-            <a href="#" class="btn btn-danger mb-1 w-100">Hapus</a>
-            </td>
-            </tr>
-        <?php } ?>
-        </tbody>
-        </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center mt-3">
+                    <li class="page-item">
+                        <a class="page-link" <?php if ($halaman > 1) {
+                                                    echo "href='?halaman=$previous'";
+                                                } ?>>Previous</a>
+                    </li>
+                    <?php
+                    for ($x = 1; $x <= $total_halaman; $x++) {
+                    ?>
+                        <li class="page-item"><a class="page-link" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
+                    <?php } ?>
+                    <li class="page-item"><a class="page-link" <?php if ($halaman < $total_halaman) {
+                                                                    echo "href='?halaman=$next'";
+                                                                } ?>>Next</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center mt-3">
-                <li class="page-item">
-                    <a class="page-link" <?php if ($halaman > 1) {
-                                                echo "href='?halaman=$previous'";
-                                            } ?>>Previous</a>
-                </li>
-                <?php
-                for ($x = 1; $x <= $total_halaman; $x++) {
-                ?>
-                    <li class="page-item"><a class="page-link" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
-                <?php } ?>
-                <li class="page-item"><a class="page-link" <?php if ($halaman < $total_halaman) {
-                                                                echo "href='?halaman=$next'";
-                                                            } ?>>Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>
