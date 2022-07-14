@@ -2,12 +2,18 @@
 
 include_once("config.php");
 session_start();
-if (!isset($_SESSION["adminloggedin"]) || !isset($_SESSION["superadminloggedin"])) {
-    echo "<script>
-        alert('Silahkan log in sebagai admin terlebih dahulu!');
-        window.location.href = 'index.php';
-    </script>";
-}
+// if (!isset($_SESSION["adminloggedin"])) {
+//     echo "<script>
+//         alert('Silahkan log in sebagai admin terlebih dahulu!');
+//         window.location.href = 'index.php';
+//     </script>";
+// }
+// if (!isset($_SESSION["superadminloggedin"])) {
+//     echo "<script>
+//         alert('Silahkan log in sebagai super admin terlebih dahulu!');
+//         window.location.href = 'index.php';
+//     </script>";
+// }
 
 $sql = 'SELECT * FROM user WHERE id > 1';
 $data_user = $conn->query($sql);
