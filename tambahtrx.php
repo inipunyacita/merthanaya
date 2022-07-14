@@ -131,7 +131,7 @@ $total_price = 0;
                 </table>
             </div><br>
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination flex-wrap justify-content-center">
                     <li class="page-item">
                         <a class="page-link" <?php if ($halaman > 1) {
                                                     echo "href='?halaman=$previous'";
