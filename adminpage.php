@@ -171,7 +171,7 @@ $data_user = $conn->query($sql);
                 </table>
             </div>
             <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center mt-3">
+                <ul class="pagination flex-wrap justify-content-center mt-3">
                     <li class="page-item">
                         <a class="page-link" <?php if ($halaman > 1) {
                                                     echo "href='?halaman=$previous'";
