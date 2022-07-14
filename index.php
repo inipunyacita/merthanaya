@@ -19,12 +19,12 @@ if (isset($_SESSION['adminloggedin'])) {
         window.location.href = 'adminpage.php';
     </script>";
 }
-// if (isset($_SESSION['superadminloggedin'])) {
-//   echo "<script>
-//         alert('Silahkan log out dari super admin terlebih dahulu!');
-//         window.location.href = 'adminpage.php';
-//     </script>";
-// }
+if (isset($_SESSION['superadminloggedin'])) {
+  echo "<script>
+        alert('Silahkan log out dari super admin terlebih dahulu!');
+        window.location.href = 'adminpage.php';
+    </script>";
+}
 
 ?>
 <!doctype html>
