@@ -2,13 +2,12 @@
 
 include_once("config.php");
 session_start();
-if (!isset($_SESSION["adminloggedin"]) || !isset($_SESSION["superadminloggedin"])) {
+if (!isset($_SESSION["adminloggedin"]) && !isset($_SESSION["superadminloggedin"])) {
     echo "<script>
-        alert('Silahkan log in sebagai admin terlebih dahulu!');
+        alert('Silahkan log in terlebih dahulu!');
         window.location.href = 'index.php';
     </script>";
 }
-
 $total_price = 0;
 
 
