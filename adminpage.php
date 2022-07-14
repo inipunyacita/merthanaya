@@ -2,12 +2,12 @@
 
 include_once("config.php");
 session_start();
-if (!isset($_SESSION["adminloggedin"])) {
-    echo "<script>
-        alert('Silahkan log in sebagai admin terlebih dahulu!');
-        window.location.href = 'index.php';
-    </script>";
-}
+// if (!isset($_SESSION["adminloggedin"]) || !isset($_SESSION["superadminloggedin"])) {
+//     echo "<script>
+//         alert('Silahkan log in sebagai admin terlebih dahulu!');
+//         window.location.href = 'index.php';
+//     </script>";
+// }
 
 $sql = 'SELECT * FROM user WHERE id > 1';
 $data_user = $conn->query($sql);
@@ -110,7 +110,7 @@ $data_user = $conn->query($sql);
                                 <td><?= $data['username']; ?></td>
                                 <td>
                                     <a href="tambahtransaksi.php?id=<?php echo $data['id'] ?>" class="btn btn-success mb-1 w-100">Tambah Transaksi</a>
-                                    <a href="#"><button type="button" class="btn btn-primary w-100 mb-1 btn_detail" data-bs-toggle="modal" data-bs-target="#detail_modal<?php echo $data['id'] ?>">
+                                    <a href="#"><button type="button" class="btn btn-secondary w-100 mb-1 btn_detail" data-bs-toggle="modal" data-bs-target="#detail_modal<?php echo $data['id'] ?>">
                                             Detail
                                         </button>
                                         <!-- Modal -->
@@ -162,8 +162,20 @@ $data_user = $conn->query($sql);
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="#" class="btn btn-warning mb-1 text-white w-100">Edit</a>
-                                    <a href="#" class="btn btn-danger mb-1 w-100">Hapus</a>
+                                    <?php
+                                    if (isset($_SESSION["superadminloggedin"])) {
+
+                                    ?>
+                                        <a href="#" class="btn btn-warning mb-1 text-white w-100">Edit</a>
+                                        <a href="#" class="btn btn-danger mb-1 w-100">Hapus</a>
+                                    <?php
+                                    } else {
+
+                                    ?>
+
+                                    <?php
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                         <?php } ?>

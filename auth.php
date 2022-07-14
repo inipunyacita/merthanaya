@@ -6,16 +6,22 @@ require_once "config.php";
 
 if (empty($_POST['nohp']) && empty($_POST['pass']))  echo "<script>alert('Login Gagal No HP / Password Masih Kosong');window.location.href = 'index.php';</script>";
 
-$user_nohp = $_POST['nohp'];
+$user_name = $_POST['username'];
 $user_pass = $_POST['pass'];
 
-$user_sql = "SELECT * FROM user WHERE nohp = '$user_nohp'";
+$user_sql = "SELECT * FROM user WHERE username = '$user_name'";
 
 $user_query = $conn->query($user_sql)->fetch_assoc();
 
 if (isset($user_query)) {
     if ($user_query['pass'] == $user_pass) {
-        if ($user_query['nohp'] == 'admin') {
+        if ($user_query['username'] == 'superadmin') {
+            $_SESSION["superadminloggedin"] = $user_query;
+            echo "<script>
+            alert('Login Sukses');
+            window.location.href = 'adminpage.php';
+            </script>";
+        } elseif (($user_query['username'] == 'admin')) {
             $_SESSION["adminloggedin"] = $user_query;
             echo "<script>
             alert('Login Sukses');

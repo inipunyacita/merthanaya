@@ -19,6 +19,12 @@ if (isset($_SESSION['adminloggedin'])) {
         window.location.href = 'adminpage.php';
     </script>";
 }
+// if (isset($_SESSION['superadminloggedin'])) {
+//   echo "<script>
+//         alert('Silahkan log out dari super admin terlebih dahulu!');
+//         window.location.href = 'adminpage.php';
+//     </script>";
+// }
 
 ?>
 <!doctype html>
@@ -70,7 +76,7 @@ if (isset($_SESSION['adminloggedin'])) {
       <form action="auth.php" method="post">
         <div class="mb-3">
           <label for="texthp" class="form-label">Kasir :</label>
-          <input type="text" name="nohp" class="form-control" id="nohp" aria-describedby="emailHelp">
+          <input type="text" name="username" class="form-control" id="nohp" aria-describedby="emailHelp">
           <div id="emailHelp" class="form-text">Masukan nama kasir</div>
         </div>
         <div class="mb-3">
