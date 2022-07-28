@@ -166,8 +166,8 @@ $data_user = $conn->query($sql);
                                     if (isset($_SESSION["superadminloggedin"])) {
 
                                     ?>
-                                        <a href="#" class="btn btn-warning mb-1 text-white w-100">Edit</a>
-                                        <a href="#" class="btn btn-danger mb-1 w-100">Hapus</a>
+                                        <a href='editakun.php?id=<?php echo $data['id'] ?>' class="btn btn-warning mb-1 text-white w-100">Edit</a>
+                                        <a href='deleteakun.php?id=<?php echo $data['id'] ?>' class="btn btn-danger mb-1 w-100">Hapus</a>
                                     <?php
                                     } else {
 

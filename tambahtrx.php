@@ -130,26 +130,30 @@ $total_price = 0;
                     </tbody>
                 </table>
             </div><br>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination flex-wrap justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" <?php if ($halaman > 1) {
-                                                    echo "href='?halaman=$previous'";
-                                                } ?>>Previous</a>
-                    </li>
-                    <?php
-                    for ($x = 1; $x <= $total_halaman; $x++) {
-                    ?>
-                        <li class="page-item"><a class="page-link" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
-                    <?php } ?>
-                    <li class="page-item"><a class="page-link" <?php if ($halaman < $total_halaman) {
-                                                                    echo "href='?halaman=$next'";
-                                                                } ?>>Next</a>
-                    </li>
-                </ul>
-            </nav>
-            <h4>Jumlah Transaksi : <?= $total_data ?> Kali</h4>
-            <h4>Total Transaksi : Rp <?= number_format($total_price, 2, ',', '.') ?></h4>
+            <div class="pagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination flex-wrap justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" <?php if ($halaman > 1) {
+                                                        echo "href='?halaman=$previous'";
+                                                    } ?>>Previous</a>
+                        </li>
+                        <?php
+                        for ($x = 1; $x <= $total_halaman; $x++) {
+                        ?>
+                            <li class="page-item"><a class="page-link" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
+                        <?php } ?>
+                        <li class="page-item"><a class="page-link" <?php if ($halaman < $total_halaman) {
+                                                                        echo "href='?halaman=$next'";
+                                                                    } ?>>Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="data-harga">
+                <h4>Jumlah Transaksi : <?= $total_data ?> Kali</h4>
+                <h4>Total Transaksi : Rp <?= number_format($total_price, 2, ',', '.') ?></h4>
+            </div>
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
