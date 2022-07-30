@@ -94,7 +94,7 @@ $data_user = $conn->query($sql);
                         $total_halaman = ceil($jumlah_data / $batas);
                         if (isset($_GET['cari']) && $_GET['cari'] != null) {
                             $cari = $_GET['cari'];
-                            $sql = "SELECT * FROM `user` WHERE (`id`like'%$cari%') or (`username`like'%$cari%') limit $halaman_awal, $batas";
+                            $sql = "SELECT * FROM `user` WHERE (`id` = '$cari') or (`username`like'%$cari%') limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql);
                         } else {
                             $sql_user = "SELECT * FROM user limit $halaman_awal, $batas";

@@ -64,12 +64,22 @@ $total_price = 0;
             <div class="table-responsive">
                 <table class="table mt-2">
                     <form method="get" action="tambahtrx.php">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <span>Dari tgl :</span>
+                                <input class="form-control" type="date" name="start" id="tglmulai">
+                            </div>
+                            <div class="col">
+                                <span>Sampai tgl :</span>
+                                <input class="form-control" type="date" name="end" id="tglselesai">
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-8">
                                 <input class="form-control" style="width: 100%;" type="search" name="cari" placeholder="Masukan No ID/Username Pelanggan" aria-label="Search">
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-outline-success" type="submit">Cari</button>
+                                <button class="btn btn-outline-success" style="width: 100%;" name="filter" type="submit">Cari</button>
                             </div>
                         </div>
                     </form>
@@ -94,17 +104,55 @@ $total_price = 0;
                         $jumlah_data = mysqli_num_rows($data);
                         $total_halaman = ceil($jumlah_data / $batas);
 
-                        if (isset($_GET['cari']) && $_GET['cari'] != null) {
+                        if (isset($_GET['filter'])) {
                             $cari = $_GET['cari'];
-                            $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` = '$cari') or (`username` like '%$cari%') limit $halaman_awal, $batas";
-                            $data_user = $conn->query($sql_cari);
+                            $startdt = $_GET['start'];
+                            $enddt = $_GET['end'];
+                            if ($cari != null) {
+                                if (($startdt != null) && ($enddt != null)) {
+                                    $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%')) and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
+                                    $data_user = $conn->query($sql_cari);
 
-                            $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` = '$cari') or (`username` like '%$cari%') limit $halaman_awal, $batas";
-                            $data_user2 = $conn->query($sql_cari);
-                            foreach ($data_user2 as $total) {
-                                $total_price += $total['trx'];
+                                    $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%')) and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
+                                    $data_user2 = $conn->query($sql_cari2);
+                                    foreach ($data_user2 as $total) {
+                                        $total_price += $total['trx'];
+                                    }
+                                    $total_data = mysqli_num_rows($data_user);
+                                } else {
+                                    $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%'))";
+                                    $data_user = $conn->query($sql_cari);
+
+                                    $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%'))";
+                                    $data_user2 = $conn->query($sql_cari2);
+                                    foreach ($data_user2 as $total) {
+                                        $total_price += $total['trx'];
+                                    }
+                                    $total_data = mysqli_num_rows($data_user);
+                                }
+                            } else {
+                                if (($startdt != null) && ($enddt != null)) {
+                                    $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid where (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
+                                    $data_user = $conn->query($sql_cari);
+
+                                    $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
+                                    $data_user2 = $conn->query($sql_cari2);
+                                    foreach ($data_user2 as $total) {
+                                        $total_price += $total['trx'];
+                                    }
+                                    $total_data = mysqli_num_rows($data_user);
+                                } else {
+                                    $sql = "SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid limit $halaman_awal, $batas";
+                                    $data_user = $conn->query($sql);
+
+                                    $sql2 = "SELECT * FROM usertrx";
+                                    $jumlahdata = $conn->query($sql2);
+                                    foreach ($jumlahdata as $total) {
+                                        $total_price += $total['trx'];
+                                    }
+                                    $total_data = mysqli_num_rows($jumlahdata);
+                                }
                             }
-                            $total_data = mysqli_num_rows($data_user);
                         } else {
                             $sql = "SELECT * FROM user INNER JOIN usertrx ON user.id = usertrx.userid limit $halaman_awal, $batas";
                             $data_user = $conn->query($sql);
