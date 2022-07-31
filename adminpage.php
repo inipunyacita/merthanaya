@@ -118,7 +118,6 @@ $data_user = $conn->query($sql);
                                             <div class="modal-dialog modal-fullscreen-sm-down">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <span><?= phpinfo() ?></span>
                                                         <h5 class="modal-title" id="staticBackdropLabel">Detail Informasi</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
