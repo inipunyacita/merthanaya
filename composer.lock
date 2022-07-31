@@ -21,7 +21,7 @@
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2"
+                "php": ">=8.0.0"
             },
             "type": "library",
             "autoload": {
