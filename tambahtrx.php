@@ -109,26 +109,50 @@ $total_price = 0;
                             $startdt = $_GET['start'];
                             $enddt = $_GET['end'];
                             if ($cari != null) {
-                                if (($startdt != null) && ($enddt != null)) {
-                                    $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%')) and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
-                                    $data_user = $conn->query($sql_cari);
+                                if (is_numeric($cari) == 1) {
+                                    if (($startdt != null) && ($enddt != null)) {
+                                        $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY)) limit $halaman_awal, $batas";
+                                        $data_user = $conn->query($sql_cari);
 
-                                    $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%')) and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
-                                    $data_user2 = $conn->query($sql_cari2);
-                                    foreach ($data_user2 as $total) {
-                                        $total_price += $total['trx'];
+                                        $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
+                                        $data_user2 = $conn->query($sql_cari2);
+                                        foreach ($data_user2 as $total) {
+                                            $total_price += $total['trx'];
+                                        }
+                                        $total_data = mysqli_num_rows($data_user2);
+                                    } else {
+                                        $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` = '$cari')";
+                                        $data_user = $conn->query($sql_cari);
+
+                                        $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` = '$cari')";
+                                        $data_user2 = $conn->query($sql_cari2);
+                                        foreach ($data_user2 as $total) {
+                                            $total_price += $total['trx'];
+                                        }
+                                        $total_data = mysqli_num_rows($data_user2);
                                     }
-                                    $total_data = mysqli_num_rows($data_user);
                                 } else {
-                                    $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%'))";
-                                    $data_user = $conn->query($sql_cari);
+                                    if (($startdt != null) && ($enddt != null)) {
+                                        $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%')) and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY)) limit $halaman_awal, $batas";
+                                        $data_user = $conn->query($sql_cari);
 
-                                    $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%'))";
-                                    $data_user2 = $conn->query($sql_cari2);
-                                    foreach ($data_user2 as $total) {
-                                        $total_price += $total['trx'];
+                                        $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%')) and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
+                                        $data_user2 = $conn->query($sql_cari2);
+                                        foreach ($data_user2 as $total) {
+                                            $total_price += $total['trx'];
+                                        }
+                                        $total_data = mysqli_num_rows($data_user2);
+                                    } else {
+                                        $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%'))";
+                                        $data_user = $conn->query($sql_cari);
+
+                                        $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') or (`username` like '%$cari%'))";
+                                        $data_user2 = $conn->query($sql_cari2);
+                                        foreach ($data_user2 as $total) {
+                                            $total_price += $total['trx'];
+                                        }
+                                        $total_data = mysqli_num_rows($data_user2);
                                     }
-                                    $total_data = mysqli_num_rows($data_user);
                                 }
                             } else {
                                 if (($startdt != null) && ($enddt != null)) {
@@ -189,7 +213,7 @@ $total_price = 0;
                         <?php
                         for ($x = 1; $x <= $total_halaman; $x++) {
                         ?>
-                            <li class="page-item"><a class="page-link" href="?halaman=<?php echo $x ?>"><?php echo $x; ?></a></li>
+                            <li class="page-item"><a class="page-link" href="?halaman=<?= $x ?>"><?php echo $x; ?></a></li>
                         <?php } ?>
                         <li class="page-item"><a class="page-link" <?php if ($halaman < $total_halaman) {
                                                                         echo "href='?halaman=$next'";
@@ -198,10 +222,24 @@ $total_price = 0;
                     </ul>
                 </nav>
             </div>
-            <div class="data-harga">
+            <div class="export-file mt-2">
+                <form method="post" action="export.php">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-md-12">
+                            <label for=""><strong>Export Data Transaksi :</strong></label>
+                            <select name="export-data" id="export-data" class="form-control" hidden>
+                                <option value="xlsx">XLSX</option>
+                            </select>
+                            <button type="submit" name="submit" class="btn btn-success rounded shadow w-25"><strong>Export</strong></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="data-harga mt-5">
                 <h4>Jumlah Transaksi : <?= $total_data ?> Kali</h4>
                 <h4>Total Transaksi : Rp <?= number_format($total_price, 2, ',', '.') ?></h4>
             </div>
+
         </div>
     </div>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
