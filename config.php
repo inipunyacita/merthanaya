@@ -1,9 +1,9 @@
 <?php
 
 $db_host = "localhost";
-$db_user = "citanant_admin";
-$db_pass = "citaadmin12345";
-$db_name = "citanant_merthanaya";
+$db_user = "merthana_cita";
+$db_pass = "merthanayacita12345";
+$db_name = "merthana_db";
 
 // $db_host = "localhost";
 // $db_user = "root";
