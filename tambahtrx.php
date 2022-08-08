@@ -111,10 +111,10 @@ $total_price = 0;
                             if ($cari != null) {
                                 if (is_numeric($cari) == 1) {
                                     if (($startdt != null) && ($enddt != null)) {
-                                        $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY)) limit $halaman_awal, $batas";
+                                        $sql_cari = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` = '$cari') and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY)) limit $halaman_awal, $batas";
                                         $data_user = $conn->query($sql_cari);
 
-                                        $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE ((`userid` = '$cari') and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
+                                        $sql_cari2 = "SELECT * FROM `usertrx` INNER JOIN `user` on user.id = usertrx.userid WHERE (`userid` = '$cari') and (`trxdate` between '$startdt' and ADDDATE('$enddt', INTERVAL 1 DAY))";
                                         $data_user2 = $conn->query($sql_cari2);
                                         foreach ($data_user2 as $total) {
                                             $total_price += $total['trx'];
