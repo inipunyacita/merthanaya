@@ -58,9 +58,9 @@ if (isset($_SESSION['superadminloggedin'])) {
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Informasi</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a href="#" class="dropdown-item">Berita</a></li>
-              <li><a href="#" class="dropdown-item">Event</a></li>
-              <li><a href="#" class="dropdown-item">Promo</a></li>
+              <li><a href="https://merthanaya.co.id/berita.php" class="dropdown-item">Berita</a></li>
+              <li><a href="https://merthanaya.co.id/event.php" class="dropdown-item">Event</a></li>
+              <li><a href="https://merthanaya.co.id/promo.php" class="dropdown-item">Promo</a></li>
             </ul>
           </li>
           <li class="nav-item">
